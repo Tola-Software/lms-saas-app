@@ -12,12 +12,24 @@ interface CompanionSessionPageProps {
 
 const CompanionSession = async ({ params }: CompanionSessionPageProps) => {
   const { id } = await params;
-  const companion = await getCompanion(id);
   const user = await currentUser();
+
+  if (!user) redirect("/sign-in");
+
+  let companion;
+  try {
+    companion = await getCompanion(id);
+  } catch (error) {
+    console.error("Error fetching companion:", error);
+    redirect("/companions");
+  }
+
+  if (!companion) {
+    redirect("/companions");
+  }
 
   const { name, subject, duration, topic } = companion;
 
-  if (!user) redirect("/sign-in");
   if (!name) redirect("/companions");
 
   return (
