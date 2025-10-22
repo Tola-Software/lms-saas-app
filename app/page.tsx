@@ -2,42 +2,39 @@ import React from "react";
 import CompanionCard from "@/components/CompanionCard";
 import CompanionList from "@/components/CompanionList";
 import CTA from "@/components/CTA";
-import {recentSessions} from "@/lib/constants";
-
-const Page: React.FC = () => {
+import { getAllCompanions, getRecentSessions } from "@/lib/actions/companion.actions";
+import { getSubjectColor } from "@/lib/utils";
+const Page: React.FC = async () => {
+  const companionSessions = await getAllCompanions({ limit: 3 });
+  const recentSessions = await getRecentSessions(10);
   return (
     <main>
-      <h1 className="">Popular Companions</h1>
-      <section className="home-section">
-        <CompanionCard
-          id="1"
-          name="Neura the Brainy Explorer"
-          topic="Neural Network of the Brain"
-          subject="Science"
-          duration={30}
-          color="#E5D0FF"
-        />
-        <CompanionCard
-          id="2"
-          name="Countsy the Number Wizard"
-          topic="Derivatives & Integrals"
-          subject="Maths"
-          duration={30}
-          color="#BDE7FF"
-        />
-        <CompanionCard
-          id="3"
-          name="Verba the Vocabulary Builder"
-          topic="Topic: English Literature "
-          subject="Language"
-          duration={30}
-          color="#FFDA6E"
-        />
-
+      {/* Hero Section */}
+      <section className="flex flex-col gap-3 mb-8">
+        <h1 className="text-5xl max-md:text-4xl">Popular Companions</h1>
+        <p className="text-lg text-muted-foreground max-w-2xl">
+          Discover AI-powered learning companions tailored to your interests. Start your personalized learning journey
+          today.
+        </p>
       </section>
 
-      <section className="home-section">
-        <CompanionList title="Recently completed sessions" companions={recentSessions}  classNames="lg:w-2/3 w-full"/>
+      {/* Popular Companions Grid */}
+      <section className="home-section mb-12">
+        {companionSessions && companionSessions.length > 0 ? (
+          companionSessions.map((companion) => (
+            <CompanionCard key={companion.id} {...companion} color={getSubjectColor(companion.subject)} />
+          ))
+        ) : (
+          <div className="flex flex-col items-center justify-center py-16 text-center">
+            <p className="text-muted-foreground text-lg">No companions available yet.</p>
+            <p className="text-sm text-muted-foreground mt-2">Create your first companion to get started!</p>
+          </div>
+        )}
+      </section>
+
+      {/* Recent Sessions & CTA */}
+      <section className="home-section gap-8">
+        <CompanionList title="Recently Completed Sessions" companions={recentSessions} classNames="lg:w-2/3 w-full" />
         <CTA />
       </section>
     </main>

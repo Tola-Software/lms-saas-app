@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button"
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -15,7 +14,9 @@ import {
 import { Input } from "@/components/ui/input"
 import {Textarea} from "@/components/ui/textarea";
 import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/components/ui/select";
-import {subjects, voices} from "@/lib/constants";
+import {subjects} from "@/lib/constants";
+import {createCompanion} from "@/lib/actions/companion.actions";
+import {redirect} from "next/navigation";
 
 const formSchema = z.object({
   name: z.string().min(1, 'Username is required'),
@@ -41,8 +42,15 @@ const CompanionForm: React.FC = () => {
     }
   })
 
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
-    console.log('Form submitted:', values);
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+   const companion = await createCompanion(values);
+
+    if(companion) {
+      redirect(`/companions/${companion.id}`);
+    } else {
+      console.log('Failed to create companion');
+      redirect('/')
+    }
   }
   return (
     <div className="companion-form">
