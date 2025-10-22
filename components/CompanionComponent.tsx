@@ -138,7 +138,7 @@ const CompanionComponent = ({
             <p className="font-bold text-2xl">{userName}</p>
           </div>
           <button className="btn-mic" onClick={toggleMicrophone} disabled={callStatus !== CallStatus.ACTIVE}>
-            <Image src={isMuted ? "/icons/mic-off.svg" : "/icons/mic-on.svg"} alt="mic" width={36} height={36} />
+            <Image src={isMuted ? "/icons/mic-on.svg" : "/icons/mic-off.svg"} alt="mic" width={36} height={36} />
             <p className="max-sm:hidden">{isMuted ? "Turn on microphone" : "Turn off microphone"}</p>
           </button>
           <button
