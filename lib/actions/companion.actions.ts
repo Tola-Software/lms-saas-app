@@ -58,7 +58,6 @@ export const getCompanion = async (id: string) => {
     throw new Error("Companion not found");
   }
 
-  console.log(data[0], "companion data");
   return data[0];
 };
 
