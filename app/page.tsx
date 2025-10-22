@@ -4,6 +4,9 @@ import CompanionList from "@/components/CompanionList";
 import CTA from "@/components/CTA";
 import { getAllCompanions, getRecentSessions } from "@/lib/actions/companion.actions";
 import { getSubjectColor } from "@/lib/utils";
+
+export const dynamic = "force-dynamic";
+
 const Page: React.FC = async () => {
   const companionSessions = await getAllCompanions({ limit: 3 });
   const recentSessions = await getRecentSessions(10);

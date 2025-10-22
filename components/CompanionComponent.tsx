@@ -43,7 +43,7 @@ const CompanionComponent = ({
   }, [isSpeaking, lottieRef]);
 
   useEffect(() => {
-    console.log(id, "added to session history kkkk");
+    console.log(id, "added to session history");
     const onCallStart = () => setCallStatus(CallStatus.ACTIVE);
 
     const onCallEnd = () => {
@@ -78,7 +78,7 @@ const CompanionComponent = ({
       vapi.off("speech-start", onSpeechStart);
       vapi.off("speech-end", onSpeechEnd);
     };
-  }, []);
+  }, [id]);
 
   const toggleMicrophone = () => {
     const isMuted = vapi.isMuted();

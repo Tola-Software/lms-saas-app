@@ -5,6 +5,8 @@ import { getSubjectColor } from "@/lib/utils";
 import SearchInput from "@/components/SearchInput";
 import SubjectFilter from "@/components/Subject";
 
+export const dynamic = "force-dynamic";
+
 const page = async ({ searchParams }: SearchParams) => {
   const filters = await searchParams;
   const subject = filters.subject && filters.subject !== "all" ? filters.subject : "";
