@@ -74,7 +74,7 @@
     @apply bg-background text-foreground transition-colors duration-300;
   }
   main {
-    @apply mx-auto px-14 flex flex-col gap-8 bg-background h-full max-w-[1400px] pt-10 max-sm:px-2 mb-5 transition-colors duration-300;
+    @apply mx-auto px-14 flex flex-col gap-12 bg-background h-full max-w-[1400px] pt-12 pb-20 max-sm:px-4 transition-colors duration-300;
   }
   h1 {
     @apply text-4xl font-bold bg-gradient-to-r from-[#2947db] via-[#7c3aed] via-[#06b6d4] to-[#10b981] bg-clip-text text-transparent;
@@ -86,13 +86,13 @@
 
 @layer components {
   .home-section {
-    @apply flex gap-6 justify-between items-start w-full max-lg:flex-col-reverse max-lg:items-center;
+    @apply flex gap-8 justify-between items-start w-full max-lg:flex-col-reverse max-lg:items-center;
   }
   .companions-grid {
-    @apply flex flex-wrap gap-6 w-full max-md:justify-center justify-between;
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full;
   }
   .companion-card {
-    @apply flex flex-col rounded-2xl border px-6 py-6 gap-4 w-full lg:max-w-[410px] justify-between backdrop-blur-sm transition-all duration-300 bg-white dark:bg-card/50 shadow-md hover:shadow-xl dark:shadow-none dark:hover:shadow-lg dark:hover:shadow-accent/20 hover:border-accent/50 hover:-translate-y-1;
+    @apply flex flex-col rounded-2xl border px-6 py-6 gap-4 w-full justify-between backdrop-blur-sm transition-all duration-300 bg-white dark:bg-card/50 shadow-md hover:shadow-xl dark:shadow-none dark:hover:shadow-lg dark:hover:shadow-accent/20 hover:border-accent/50 hover:-translate-y-1 min-h-[280px];
   }
   .subject-badge {
     @apply bg-gradient-to-r from-[#2947db] via-[#7c3aed] to-[#06b6d4] text-white rounded-full text-xs px-3 py-1.5 capitalize font-semibold;
@@ -119,13 +119,13 @@
     @apply bg-gradient-to-r from-[#2947db] via-[#7c3aed] to-[#06b6d4] text-white rounded-xl cursor-pointer px-6 py-3 flex items-center gap-2 font-semibold hover:shadow-lg hover:shadow-[#2947db]/50 transition-all duration-200 hover:scale-105;
   }
   .navbar {
-    @apply flex items-center justify-between mx-auto w-full px-14 py-4 bg-secondary/40 dark:bg-card/40 backdrop-blur-md border-b border-secondary/30 max-sm:px-4 sticky top-0 z-50 transition-colors duration-300;
+    @apply flex items-center justify-between mx-auto w-full px-14 py-5 bg-secondary/40 dark:bg-card/40 backdrop-blur-md border-b border-secondary/30 max-sm:px-4 sticky top-0 z-50 transition-colors duration-300;
   }
   .btn-signin {
     @apply border border-accent rounded-full px-5 py-2.5 text-sm font-semibold flex items-center gap-2 cursor-pointer hover:bg-accent/10 transition-all duration-200 text-foreground;
   }
   .companion-list {
-    @apply rounded-2xl border border-secondary/30 px-8 pt-8 pb-10 w-full bg-white dark:bg-card/30 backdrop-blur-sm shadow-md dark:shadow-none;
+    @apply rounded-2xl border border-secondary/30 px-8 pt-8 pb-10 w-full bg-white dark:bg-card/30 backdrop-blur-sm shadow-md dark:shadow-none overflow-hidden;
   }
   .companion-limit {
     @apply items-center justify-center flex flex-col gap-4 w-full min-2xl:w-1/2 pt-20 text-center;

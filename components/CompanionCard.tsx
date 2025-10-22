@@ -10,6 +10,7 @@ interface CompanionCardProps {
   duration: number;
   color: string;
 }
+
 const CompanionCard = ({ id, name, topic, subject, duration, color }: CompanionCardProps) => (
   <article
     className="companion-card group"
@@ -20,20 +21,23 @@ const CompanionCard = ({ id, name, topic, subject, duration, color }: CompanionC
   >
     <div className="flex justify-between items-center">
       <div className="subject-badge">{subject}</div>
-      <button className="companion-bookmark">
+      <button className="companion-bookmark group/bookmark" aria-label="Bookmark companion">
         <Image
           src="/icons/bookmark.svg"
           alt="bookmark"
           width={12.5}
           height={15}
-          className="dark:invert dark:brightness-0 dark:contrast-200"
+          className="dark:invert dark:brightness-0 dark:contrast-200 group-hover/bookmark:scale-110 transition-transform"
         />
       </button>
     </div>
 
-    <h2 className="text-2xl font-bold text-foreground">{name}</h2>
-    <p className="text-sm text-muted-foreground">{topic}</p>
-    <div className="flex items-center gap-2">
+    <div className="flex flex-col gap-2 flex-grow">
+      <h2 className="text-2xl font-bold text-foreground group-hover:text-accent transition-colors">{name}</h2>
+      <p className="text-sm text-muted-foreground line-clamp-2">{topic}</p>
+    </div>
+
+    <div className="flex items-center gap-2 text-muted-foreground">
       <Image
         src="/icons/clock.svg"
         alt="duration"
@@ -41,11 +45,16 @@ const CompanionCard = ({ id, name, topic, subject, duration, color }: CompanionC
         height={13.5}
         className="dark:invert dark:brightness-0 dark:contrast-200"
       />
-      <p className="text-sm text-muted-foreground">{duration} minutes</p>
+      <p className="text-sm font-medium">{duration} min</p>
     </div>
-    <Link href={`/companions/${id}`}>
-      <button className="btn-primary-red w-full justify-center">Launch Lesson</button>
+
+    <Link href={`/companions/${id}`} className="w-full">
+      <button className="btn-primary-red w-full justify-center group/btn">
+        <span>Launch Lesson</span>
+        <span className="group-hover/btn:translate-x-1 transition-transform">→</span>
+      </button>
     </Link>
   </article>
 );
+
 export default CompanionCard;
